@@ -1,16 +1,18 @@
 <template>
   <div class="flex flex-wrap flex-grow">
-    <PostCard v-for="post in posts" :key="post.id" :post="post" />
+    <MovieCard v-for="movie in movies" :key="movie.imdbID" :movie="movie" />
   </div>
 </template>
 <script>
-import PostCard from "../components/PostCard.vue";
+import MovieCard from "../components/MovieCard.vue";
 export default{
-  components:{PostCard},
+  components:{MovieCard},
   async asyncData(){
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts`)
-    const posts = await res.json()
-    return {posts}
+    const res = await fetch(`http://www.omdbapi.com/?s=batman&apikey=1743cb13&type=movie`)
+    const data = await res.json()
+    return {
+      movies: data.Search,
+    }
   }
 }
 

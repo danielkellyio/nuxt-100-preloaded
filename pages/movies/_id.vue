@@ -26,7 +26,9 @@
 <script>
 export default{
   async asyncData({route}){
-    const res = await fetch(`http://www.omdbapi.com/?i=${route.params.id}&apikey=1743cb13&plot=full`)
+    const res = await fetch(
+      `http://www.omdbapi.com/?i=${route.params.id}&apikey=1743cb13&plot=full`
+    )
     const movie = await res.json()
     return {movie}
   }
